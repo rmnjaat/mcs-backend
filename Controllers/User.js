@@ -44,7 +44,7 @@ const Signup = async (req, res) => {
                 path: "/",
                 domain: req.hostname,
                 expires,
-                httpOnly: true,
+                httpOnly: false,
                 signed: true,
                 sameSite:'None',
             });
@@ -91,7 +91,7 @@ const Login = async (req, res) => {
             path: "/",
             domain: req.hostname,
             expires,
-            httpOnly: true,
+            httpOnly: false,
             signed: true,
             sameSite:'None',
         });
@@ -161,7 +161,7 @@ const Logout = async (req, res) => {
         }
 
         res.clearCookie(cookieName, {
-            httpOnly: true,
+            httpOnly: false,
             domain: req.hostname,
             signed: true,
             path: "/",
