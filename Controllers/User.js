@@ -33,25 +33,7 @@ const Signup = async (req, res) => {
             const newUser = await new User({ name: name, email: email, password: hashedPassword });
             newUser.save();
 
-            const id = newUser._id.toString();
-            const payload = { id, email };
-            const token = jwt.sign(payload, jwtsecret, { expiresIn: '7d' });
-
-            const expires = new Date();
-            expires.setDate(expires.getDate() + 7);
-
-            res.cookie(cookieName, token, {
-                path: "/",
-                domain: req.hostname,
-                expires,
-                httpOnly: true,
-                signed: true,
-                sameSite: 'none',
-                secure: true
-                
-            });
-
-            console.log('signed up ');
+            
 
             return res.status(200).json({ message: "Signup successful", name: newUser.name, email: newUser.email });
         }
