@@ -44,9 +44,11 @@ const Signup = async (req, res) => {
                 path: "/",
                 domain: req.hostname,
                 expires,
-                httpOnly: false,
+                httpOnly: true,
                 signed: true,
-                sameSite:'None',
+                sameSite: 'none',
+                secure: true
+                
             });
 
             console.log('signed up ');
@@ -93,7 +95,8 @@ const Login = async (req, res) => {
             expires,
             httpOnly: false,
             signed: true,
-            sameSite:'None',
+           sameSite: 'none',
+                secure: true
         });
 
         return res.status(200).json({ message: "Login successful", name: user.name, email: user.email });
@@ -165,7 +168,8 @@ const Logout = async (req, res) => {
             domain: req.hostname,
             signed: true,
             path: "/",
-            sameSite:'None',
+            sameSite: 'none',
+                secure: true
         });
 
         return res
